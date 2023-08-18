@@ -60,6 +60,15 @@ Node* InsertPos(Node* head, int x,int pos){
     return head;
 }
 
+Node* DeleteHead(Node* head){
+    if(head == NULL) return NULL;
+    else{
+        Node* temp = head->next;
+        delete head;
+        return temp;
+    }
+}
+
 int main(){
     Node* head = new Node(10);
     head->next = new Node(20);
@@ -91,6 +100,12 @@ int main(){
     head = InsertPos(head,999, 50);
 
     cout<<"After insert position: ";
+    PrintList(head);
+    cout<<endl;
+
+    head = DeleteHead(head);
+
+    cout<<"After deleting head: ";
     PrintList(head);
     cout<<endl;
 
