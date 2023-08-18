@@ -36,6 +36,30 @@ Node* InsertEnd(Node* head, int x){
     return head;
 }
 
+Node* InsertPos(Node* head, int x,int pos){
+    
+    Node* temp = new Node(x);
+    Node* curr = head;
+
+    //Handle the case of changing head
+    if(pos == 1){
+        temp->next = head;
+        return temp;
+    }
+    while(pos > 2 && curr != NULL){
+        curr = curr->next;
+        pos--;
+    }
+
+    //Handled the position greater than length of linkedlist.
+    if(curr == NULL) return head;
+    
+    temp->next = curr->next;
+    curr->next = temp;
+
+    return head;
+}
+
 int main(){
     Node* head = new Node(10);
     head->next = new Node(20);
@@ -61,5 +85,14 @@ int main(){
     PrintList(head);
     cout<<endl;
     
+    head = InsertPos(head, 1, 1);
+    head = InsertPos(head,25,7);
+    head = InsertPos(head,80,13);
+    head = InsertPos(head,999, 50);
+
+    cout<<"After insert position: ";
+    PrintList(head);
+    cout<<endl;
+
     return 0;
 }
