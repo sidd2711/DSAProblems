@@ -85,6 +85,16 @@ Node* DeleteTail(Node* head){
     return head;
 }
 
+int SearchLinkedList(Node* head,int x){
+    if(head == NULL) return -1;
+
+    if(head->data == x) return 1;
+
+    int res = SearchLinkedList(head->next,x);
+    if(res == -1) return -1;
+    else return res+1;
+}
+
 int main(){
     Node* head = new Node(10);
     head->next = new Node(20);
@@ -131,5 +141,8 @@ int main(){
     PrintList(head);
     cout<<endl;
 
+    cout<<"Position of 25: "<<SearchLinkedList(head,25)<<endl;
+
+    cout<<"Position of 999: "<<SearchLinkedList(head,999)<<endl;
     return 0;
 }
