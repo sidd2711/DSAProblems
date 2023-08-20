@@ -55,7 +55,33 @@ Node* ReverseDLL(Node* head){
     }
     return prev->prev;
 }
+Node* DeleteHead(Node* head){
+    if(head == NULL) return NULL;
+    if(head->next == NULL){
+        delete head;
+        return NULL;
+    }else{
+        Node* temp = head;
+        head = head->next;
+        head->prev = NULL;
+        delete temp;
+        return head;
+    }
+}
 
+Node* DeleteTail(Node* head){
+    if(head == NULL) return NULL;
+    if(head->next == NULL){
+        delete head;
+        return NULL;
+    }else{
+        Node* curr = head;
+        while(curr->next != NULL) curr = curr->next;
+        curr->prev->next = NULL;
+        delete curr;
+        return head;
+    }
+}
 int main(){
 
     Node* head = new Node(10);
@@ -102,7 +128,17 @@ int main(){
     head = ReverseDLL(head);
     cout<<"After reverse DLL: ";
     PrintDoublyLinkedList(head);
+    cout<<endl;
 
+    head = DeleteHead(head);
+    cout<<"After Delete Head : ";
+    PrintDoublyLinkedList(head);
+    cout<<endl;
+
+    head = DeleteTail(head);
+    cout<<"After Delete Tail: ";
+    PrintDoublyLinkedList(head);
+    cout<<endl;
 
     return 0;
 }
