@@ -42,6 +42,20 @@ Node* InsertEnd(Node* head, int x){
     return head;
 }
 
+Node* ReverseDLL(Node* head){
+    if(head == NULL || head->next == NULL) return head;
+
+    Node* curr = head;
+    Node* prev = NULL;
+    while(curr!=NULL){
+        prev = curr->prev;
+        curr->prev = curr->next;
+        curr->next = prev;
+        curr = curr->prev;
+    }
+    return prev->prev;
+}
+
 int main(){
 
     Node* head = new Node(10);
@@ -84,6 +98,11 @@ int main(){
     cout<<"After InsertEnd in Empty LL: ";
     PrintDoublyLinkedList(InsertEndInNull);
     cout<<endl;
+
+    head = ReverseDLL(head);
+    cout<<"After reverse DLL: ";
+    PrintDoublyLinkedList(head);
+
 
     return 0;
 }
